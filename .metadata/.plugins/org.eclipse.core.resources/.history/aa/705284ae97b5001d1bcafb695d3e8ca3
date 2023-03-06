@@ -1,0 +1,17 @@
+package com.example.demo.service;
+
+import com.example.demo.model.UserDetails;
+
+public interface UserService {
+
+
+
+public UserDetails getUser(Integer userid);
+
+public UserDetails getUserByName(String name);
+
+public UserDetails updateUserPassword(Integer id,String newpassword);
+
+public void deleteUser(Integer id);
+
+}

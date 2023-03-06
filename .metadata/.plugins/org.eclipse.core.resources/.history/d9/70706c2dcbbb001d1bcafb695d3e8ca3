@@ -1,0 +1,10 @@
+package com.example.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.model.CartUser;
+//import com.example.demo.model.UserDetails;
+
+public interface CartRepository  extends JpaRepository<CartUser, Integer> {
+
+}

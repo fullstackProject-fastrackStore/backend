@@ -1,0 +1,48 @@
+package com.example.demo.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.model.UserDetails;
+import com.example.demo.repository.UserDetailsRepository;
+
+public class UserServiceImpl implements UserService{
+
+	@Autowired
+	private UserDetailsRepository repository; 
+	
+	@Override
+	public void addUser(UserDetails user) {
+		// TODO Auto-generated method stub
+		repository.save(user);
+	}
+
+	@Override
+	public UserDetails getUser(Integer userid) {
+		// TODO Auto-generated method stub
+		Optional <UserDetails> user= repository.findById(userid);
+		return user.get();
+	}
+
+	@Override
+	public UserDetails getUserByName(String name) {
+		// TODO Auto-generated method stub
+		Optional <UserDetails> user= repository.findUserByName(name);
+		return user.get();
+	}
+
+	@Override
+	public UserDetails updateUserPassword(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteUser(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

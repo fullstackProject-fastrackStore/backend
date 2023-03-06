@@ -1,0 +1,66 @@
+package com.example.demo.model;
+
+import jakarta.annotation.Nonnull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class ProductDetails {
+
+	@Id
+	private int id;
+	private String pname;
+	private String image;
+	private String desc;
+	private double price;
+	public ProductDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public ProductDetails(int id, String pname,String image, String desc, double price) {
+		super();
+		this.id = id;
+		this.pname = pname;
+		this.desc = desc;
+		this.price = price;
+		this.image = image;
+	}
+	
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public String getDesc() {
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "ProductDetails [id=" + id + ", pname=" + pname + ", desc=" + desc + ", price=" + price + "]";
+	}
+	
+	
+}

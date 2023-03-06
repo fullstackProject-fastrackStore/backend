@@ -1,0 +1,28 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.ProductDetails;
+import com.example.demo.repository.ProductrRepository;
+import com.example.demo.repository.UserDetailsRepository;
+
+@Service
+public class CartServiceImpl implements CartService{
+
+	@Autowired
+	private ProductrRepository productRepository;
+	
+	@Autowired
+	private UserDetailsRepository userRepository; 
+	
+	@Override
+	public List<ProductDetails> getAllProducts(Integer id) {
+		
+		List<ProductDetails> l1 = productRepository.findById();
+		return l1;
+	}
+	
+}

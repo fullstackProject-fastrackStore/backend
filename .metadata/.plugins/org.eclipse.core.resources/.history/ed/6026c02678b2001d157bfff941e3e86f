@@ -1,0 +1,26 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.UserDetails;
+import com.example.demo.service.UserServiceImpl;
+
+@RestController
+public class UserController {
+
+	@Autowired
+	private UserServiceImpl userservice;
+	
+	@GetMapping("/getUser/{id}")
+	public ResponseEntity<UserDetails> getUser(@PathVariable Integer id){
+		
+		UserDetails user= userservice.getUser(id);
+		return new ResponseEntity<UserDetails>(user,HttpStatus.OK);
+		
+	}
+}

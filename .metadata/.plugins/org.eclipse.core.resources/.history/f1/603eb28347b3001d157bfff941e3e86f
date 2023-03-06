@@ -1,0 +1,46 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.ProductDetails;
+import com.example.demo.model.UserDetails;
+import com.example.demo.repository.ProductrRepository;
+
+@Service
+public class ProductServiceImpl implements ProductService{
+
+	@Autowired
+	private ProductrRepository repository;
+
+	@Override
+	public void addProduct(ProductDetails pd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public UserDetails getProduct(Integer userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserDetails getAllProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserDetails updateProduct(Integer id, ProductDetails pd) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteProduct(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -1,0 +1,16 @@
+package com.example.demo.service;
+
+import com.example.demo.model.ProductDetails;
+import com.example.demo.model.UserDetails;
+
+public interface ProductService {
+	public  void addUser(UserDetails user);
+
+	public UserDetails getProduct(Integer userid);
+
+	public UserDetails getAllProducts();
+
+	public UserDetails updateProduct(Integer id,ProductDetails pd);
+
+	public void deleteProduct(Integer id);
+}

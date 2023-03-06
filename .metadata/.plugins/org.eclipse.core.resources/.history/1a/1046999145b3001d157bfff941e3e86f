@@ -1,0 +1,19 @@
+package com.example.demo.model;
+
+import jakarta.annotation.Nonnull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class ProductDetails {
+
+	@Id
+	private int id;
+	@Nonnull
+	private String pname;
+	private String desc;
+	@Nonnull
+	private double price;
+	
+	
+}

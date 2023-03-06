@@ -1,0 +1,13 @@
+package com.example.demo.service;
+
+import com.example.demo.model.UserDetails;
+
+public class AdminServiceImpl implements AdminService{
+
+	@Override
+	public UserDetails getUser(String email, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
