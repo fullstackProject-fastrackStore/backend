@@ -42,5 +42,21 @@ public class CartServiceImpl implements CartService{
 		
 		return productList;
 	}
+
+	@Override
+	public void addItem(Integer userId,Integer productId) {
+		// TODO Auto-generated method stub
+		CartUser item = new CartUser( productId,userId);
+		cartRepository.save(item);
+	}
+
+	@Override
+	public void deleteCartProduct(Integer userId, Integer productId) {
+		CartUser item= cartRepository.findByUserIdAndProductId(userId,productId);
+		cartRepository.delete(item);
+		
+	}
+	
+	
 	
 }

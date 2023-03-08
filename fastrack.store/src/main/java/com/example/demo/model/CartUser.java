@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class CartUser {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cartId;
 	private int productId;
 	private int userId;
@@ -17,9 +17,9 @@ public class CartUser {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CartUser(int cartId, int productId, int userId) {
+	public CartUser( int productId, int userId) {
 		super();
-		this.cartId = cartId;
+		//this.cartId = cartId;
 		this.productId = productId;
 		this.userId = userId;
 	}

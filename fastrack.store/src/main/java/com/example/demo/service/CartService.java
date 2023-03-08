@@ -10,4 +10,8 @@ public interface CartService {
 //	public List<ProductDetails> getAllProducts(Integer id);
 
 	List<ProductDetails> getCartProducts(Integer userId);
+	
+	public void addItem(Integer userId,Integer productId);
+	
+	public void deleteCartProduct(Integer userId,Integer productId);
 }
