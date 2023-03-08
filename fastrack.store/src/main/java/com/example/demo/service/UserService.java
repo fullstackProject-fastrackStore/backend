@@ -13,7 +13,7 @@ public void deleteUser(Integer id)  throws FastrackStoreException;
 
 public UserDetails getUser(String email, String password)  throws FastrackStoreException;
 
-void addUser(UserDetails user)  throws FastrackStoreException;
+UserDetails addUser(UserDetails user)  throws FastrackStoreException;
 
 
 }

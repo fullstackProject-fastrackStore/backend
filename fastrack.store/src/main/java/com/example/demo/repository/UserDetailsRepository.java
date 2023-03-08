@@ -14,6 +14,10 @@ public interface UserDetailsRepository extends JpaRepository<UserDetails, Intege
 	
 
 	UserDetails findByEmailAndPassword(String email, String password);
+
+
+
+	Optional<UserDetails> findByEmail(String email);
 	
 
 }

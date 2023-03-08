@@ -17,6 +17,7 @@ public class UserDetails {
 private int id;
 private String name;
 
+@Email
 private String email;
 
 private String password;
