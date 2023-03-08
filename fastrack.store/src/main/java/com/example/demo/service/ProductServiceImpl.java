@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.FastrackStoreException;
 import com.example.demo.model.ProductDetails;
 import com.example.demo.model.UserDetails;
 import com.example.demo.repository.ProductrRepository;
@@ -17,26 +18,26 @@ public class ProductServiceImpl implements ProductService {
 	private ProductrRepository repository;
 
 	@Override
-	public void addProduct(ProductDetails pd) {
-		// TODO Auto-generated method stub
+	public void addProduct(ProductDetails pd)  throws FastrackStoreException {
+		
 		repository.save(pd);
 	}
 
 	@Override
-	public ProductDetails getProduct(Integer id) {
+	public ProductDetails getProduct(Integer id)  throws FastrackStoreException {
 		Optional<ProductDetails> product = repository.findById(id);
 		return product.get();
 	}
 
 	@Override
-	public List<ProductDetails> getAllProducts() {
+	public List<ProductDetails> getAllProducts()  throws FastrackStoreException {
 		
 		List<ProductDetails> l1 = repository.findAll();
 		return l1;
 	}
 
 	@Override
-	public ProductDetails updateProduct(Integer id, ProductDetails pd) {
+	public ProductDetails updateProduct(Integer id, ProductDetails pd)  throws FastrackStoreException{
 Optional <ProductDetails> optuser= repository.findById(id);
 		
 ProductDetails product = optuser.get();
@@ -54,7 +55,7 @@ ProductDetails product = optuser.get();
 	
 
 	@Override
-	public void deleteProduct(Integer id) {
+	public void deleteProduct(Integer id)  throws FastrackStoreException {
 		
 		repository.deleteById(id);
 		

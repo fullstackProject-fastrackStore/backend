@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.exception.FastrackStoreException;
 import com.example.demo.model.AdminDetails;
 import com.example.demo.model.UserDetails;
 import com.example.demo.service.AdminServiceImpl;
@@ -26,7 +27,7 @@ public class AdminController {
 	private AdminServiceImpl adminservice;
 	
 	@PostMapping("/adminlogin")
-	public ResponseEntity<?> updateAdmin(@RequestBody AdminDetails user){
+	public ResponseEntity<?> updateAdmin(@RequestBody AdminDetails user)  throws FastrackStoreException {
 		System.out.println(user);
 		
 		AdminDetails userFromDb= adminservice.getAdmin(user.getAdminEmail(), user.getAdminPassword());
@@ -38,7 +39,7 @@ public class AdminController {
 		
 	}
 	@GetMapping("/getAdminName/{username}")
-	public ResponseEntity<AdminDetails> getUser(@PathVariable  String username){
+	public ResponseEntity<AdminDetails> getUser(@PathVariable  String username)  throws FastrackStoreException {
 		
 		AdminDetails user= adminservice.getUserByName(username);
 		return new ResponseEntity<AdminDetails>(user,HttpStatus.OK);

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.exception.FastrackStoreException;
 import com.example.demo.model.UserDetails;
 import com.example.demo.service.UserServiceImpl;
 
@@ -28,13 +29,13 @@ public class UserController {
 	 
 
 	@PostMapping("/registerUser")
-	public ResponseEntity<?> addUser(@RequestBody UserDetails user ){
+	public ResponseEntity<?> addUser(@RequestBody UserDetails user ) throws FastrackStoreException{
 		userservice.addUser(user);
 		return new ResponseEntity<> ("User is Registered",HttpStatus.OK);	
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> updateAdmin(@RequestBody UserDetails user){
+	public ResponseEntity<?> updateAdmin(@RequestBody UserDetails user) throws FastrackStoreException{
 		System.out.println(user);
 		
 		UserDetails userFromDb= userservice.getUser(user.getEmail(), user.getPassword());
@@ -46,13 +47,13 @@ public class UserController {
 		
 	}
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
+	public ResponseEntity<?> deleteUser(@PathVariable Integer id) throws FastrackStoreException{
 		userservice.deleteUser(id);
 		return new ResponseEntity<>("successfully unregistered for the services",HttpStatus.OK);
 	}
 	
 	@GetMapping("/getUserName/{username}")
-	public ResponseEntity<UserDetails> getUser(@PathVariable  String username){
+	public ResponseEntity<UserDetails> getUser(@PathVariable  String username) throws FastrackStoreException{ 
 		
 		UserDetails user= userservice.getUserByName(username);
 		return new ResponseEntity<UserDetails>(user,HttpStatus.OK);

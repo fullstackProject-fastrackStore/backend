@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.exception.FastrackStoreException;
 import com.example.demo.model.CartUser;
 import com.example.demo.model.ProductDetails;
 import com.example.demo.model.UserDetails;
@@ -31,7 +32,7 @@ public class CartController {
 	private CartServiceImpl cartService;
 	
 	@GetMapping("/getCart/{userId}")
-	public ResponseEntity<?>  getCartProducts(@PathVariable  Integer userId){
+	public ResponseEntity<?>  getCartProducts(@PathVariable  Integer userId)  throws FastrackStoreException {
 		
 		List<ProductDetails> list1=  cartService.getCartProducts(userId);
 		//return new ResponseEntity<ProductDetails>(list1,HttpStatus.OK);
@@ -39,7 +40,7 @@ public class CartController {
 		
 	}
 	@PostMapping("/addToCart/{userId}/{productId}")
-	public ResponseEntity<?> addToCart(@PathVariable  Integer userId,@PathVariable  Integer productId ){
+	public ResponseEntity<?> addToCart(@PathVariable  Integer userId,@PathVariable  Integer productId )  throws FastrackStoreException {
 		cartService.addItem(userId,productId);
 		return new ResponseEntity<> ("Item added",HttpStatus.OK);	
 	}
@@ -49,7 +50,7 @@ public class CartController {
 //		
 //	}
 	@DeleteMapping("/deleteItem/{userId}/{productId}")
-	public ResponseEntity<?> deleteProduct(@PathVariable Integer userId,@PathVariable Integer productId) {
+	public ResponseEntity<?> deleteProduct(@PathVariable Integer userId,@PathVariable Integer productId)  throws FastrackStoreException {
 		cartService.deleteCartProduct(userId,productId);
 		return new ResponseEntity<>("successfully removed the item",HttpStatus.OK);
 	}

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.FastrackStoreException;
 import com.example.demo.model.CartUser;
 import com.example.demo.model.ProductDetails;
 import com.example.demo.repository.CartRepository;
@@ -27,7 +28,7 @@ public class CartServiceImpl implements CartService{
 	private CartRepository cartRepository; 
 	
 	@Override
-	public List<ProductDetails> getCartProducts(Integer userId) {
+	public List<ProductDetails> getCartProducts(Integer userId)  throws FastrackStoreException {
 		
 	List<CartUser> userProduct  = cartRepository.findByUserId(userId);
 		
@@ -44,14 +45,14 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public void addItem(Integer userId,Integer productId) {
+	public void addItem(Integer userId,Integer productId)  throws FastrackStoreException {
 		// TODO Auto-generated method stub
 		CartUser item = new CartUser( productId,userId);
 		cartRepository.save(item);
 	}
 
 	@Override
-	public void deleteCartProduct(Integer userId, Integer productId) {
+	public void deleteCartProduct(Integer userId, Integer productId)  throws FastrackStoreException {
 		CartUser item= cartRepository.findByUserIdAndProductId(userId,productId);
 		cartRepository.delete(item);
 		

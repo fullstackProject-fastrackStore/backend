@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.exception.FastrackStoreException;
 import com.example.demo.model.ProductDetails;
 import com.example.demo.model.UserDetails;
 import com.example.demo.service.ProductServiceImpl;
@@ -32,7 +33,7 @@ public class ProductController {
 	private ProductServiceImpl productservice;
 	
 	@GetMapping("/getProduct/{id}")
-	public ResponseEntity<?> getProduct(@PathVariable Integer id){
+	public ResponseEntity<?> getProduct(@PathVariable Integer id)  throws FastrackStoreException {
 		ProductDetails user= productservice.getProduct(id);
 		if(user == null) {
 
@@ -42,13 +43,13 @@ public class ProductController {
 	}
 	
 	@PostMapping("/registerProduct")
-	public ResponseEntity<?> addProduct(@RequestBody ProductDetails product ){
+	public ResponseEntity<?> addProduct(@RequestBody ProductDetails product )  throws FastrackStoreException {
 		productservice.addProduct(product);
 		return new ResponseEntity<> ("Product is Registered",HttpStatus.OK);	
 	}
 	
 	@PutMapping("/updateProduct/{id}")
-	public ResponseEntity<?> updateAdmin(@PathVariable Integer id,@RequestBody ProductDetails product){
+	public ResponseEntity<?> updateAdmin(@PathVariable Integer id,@RequestBody ProductDetails product)  throws FastrackStoreException {
 		ProductDetails user= productservice.updateProduct(id, product);
 		if(user == null) {
 			return new ResponseEntity<>("please provide correct product id", HttpStatus.BAD_REQUEST);
@@ -57,13 +58,13 @@ public class ProductController {
 		
 	}
 	@DeleteMapping("/deleteProduct/{id}")
-	public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {
+	public ResponseEntity<?> deleteProduct(@PathVariable Integer id)  throws FastrackStoreException {
 		productservice.deleteProduct(id);
 		return new ResponseEntity<>("successfully unregistered for the services",HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAllProducts")
-	public List<ProductDetails> getUser(){
+	public List<ProductDetails> getUser()  throws FastrackStoreException {
 		
 		List<ProductDetails> user= productservice.getAllProducts();
 		return user;

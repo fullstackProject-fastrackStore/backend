@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.FastrackStoreException;
 import com.example.demo.model.UserDetails;
 import com.example.demo.repository.UserDetailsRepository;
 
@@ -16,34 +17,34 @@ public class UserServiceImpl implements UserService{
 	private UserDetailsRepository repository; 
 	
 	@Override
-	public void addUser(UserDetails user) {
+	public void addUser(UserDetails user) throws FastrackStoreException{
 		// TODO Auto-generated method stub
 		repository.save(user);
 	}
 
 	
 	@Override
-	public UserDetails getUser(String email,String password) {
+	public UserDetails getUser(String email,String password) throws FastrackStoreException {
 		// TODO Auto-generated method stub
 		UserDetails user= repository.findByEmailAndPassword(email,password);
 		
 	
 		if(user == null) {
-			return null;
+			throw new FastrackStoreException("no user with these datials found");
 		}
 		
 		return user;
 	}
 
 	@Override
-	public UserDetails getUserByName(String name) {
+	public UserDetails getUserByName(String name) throws FastrackStoreException {
 		// TODO Auto-generated method stub
 		Optional <UserDetails> user= repository.findByName(name);
 		return user.get();
 	}
 
 	@Override
-	public UserDetails updateUserPassword(Integer id,String newpassword) {
+	public UserDetails updateUserPassword(Integer id,String newpassword) throws FastrackStoreException {
 		Optional <UserDetails> optuser= repository.findById(id);
 		
 		UserDetails user = optuser.get();
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void deleteUser(Integer id) {
+	public void deleteUser(Integer id) throws FastrackStoreException{
 		// TODO Auto-generated method stub
 		repository.deleteById(id);
 	}
