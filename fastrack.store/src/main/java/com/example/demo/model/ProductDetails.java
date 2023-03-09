@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 public class ProductDetails {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int Productid;
 	//@NotNull(message ="{Please enter name}")
 	private String productName;

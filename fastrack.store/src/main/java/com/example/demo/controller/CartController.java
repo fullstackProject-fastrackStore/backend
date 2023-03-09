@@ -31,6 +31,7 @@ public class CartController {
 	@Autowired
 	private CartServiceImpl cartService;
 	
+	//get all products in the cart
 	@GetMapping("/getCart/{userId}")
 	public ResponseEntity<?>  getCartProducts(@PathVariable  Integer userId)  throws FastrackStoreException {
 		
@@ -39,20 +40,18 @@ public class CartController {
 		return new ResponseEntity<>(list1,HttpStatus.OK);
 		
 	}
+	//add to the cart of specific user
 	@PostMapping("/addToCart/{userId}/{productId}")
 	public ResponseEntity<?> addToCart(@PathVariable  Integer userId,@PathVariable  Integer productId )  throws FastrackStoreException {
 		cartService.addItem(userId,productId);
-		return new ResponseEntity<> ("Item added",HttpStatus.OK);	
+		return new ResponseEntity<> (HttpStatus.OK);	
 	}
 	
-//	@DeleteMapping("/removeItem/{userId}/{productId}")
-//	public ResponseEntity<?> deleteItem@(PathVariable  Integer userId, @PathVariable  Integer productId ){
-//		
-//	}
+	//deletes the item in the cart
 	@DeleteMapping("/deleteItem/{userId}/{productId}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer userId,@PathVariable Integer productId)  throws FastrackStoreException {
 		cartService.deleteCartProduct(userId,productId);
-		return new ResponseEntity<>("successfully removed the item",HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 }

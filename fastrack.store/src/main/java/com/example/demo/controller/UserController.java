@@ -18,6 +18,8 @@ import com.example.demo.exception.FastrackStoreException;
 import com.example.demo.model.UserDetails;
 import com.example.demo.service.UserServiceImpl;
 
+import jakarta.validation.Valid;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -29,10 +31,16 @@ public class UserController {
 	 
 
 	@PostMapping("/registerUser")
-	public ResponseEntity<?> addUser(@RequestBody UserDetails user ) throws FastrackStoreException{
-		userservice.addUser(user);
-		return new ResponseEntity<> ("User is Registered",HttpStatus.OK);	
+	public ResponseEntity<?> addUser(@Valid @RequestBody UserDetails user ) {
+		try {
+			UserDetails userFromDb =userservice.addUser(user);	
+			return new ResponseEntity<> (userFromDb,HttpStatus.OK);
+		}
+		catch(FastrackStoreException e) {
+			return new ResponseEntity<> (e.getMessage(),HttpStatus.BAD_REQUEST);	
+		}
 	}
+	//return new ResponseEntity<UserDetails> (userservice.addUser(user),HttpStatus.CREATED);	
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> updateAdmin(@RequestBody UserDetails user) throws FastrackStoreException{
