@@ -63,6 +63,14 @@ public class CartServiceImpl implements CartService{
 		
 	}
 
+	public void deleteAllCartProducts(Integer userId) {
+		List<CartUser> item= cartRepository.findByUserId(userId);
+		for (CartUser cartUser : item) {
+			cartRepository.delete(cartUser);
+		}
+		
+	}
+
 //	@Override
 //	public void deleteCartProduct(Integer userId, Integer productId,Integer cartId) throws FastrackStoreException {
 //		// TODO Auto-generated method stub

@@ -54,4 +54,11 @@ public class CartController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	//empty cart
+	@DeleteMapping("/deleteAllItem/{userId}")
+	public ResponseEntity<?> deleteProduct(@PathVariable Integer userId)  throws FastrackStoreException {
+		cartService.deleteAllCartProducts(userId);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 }
