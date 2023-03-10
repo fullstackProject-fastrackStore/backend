@@ -11,5 +11,8 @@ public interface CartService {
 	
 	public void addItem(Integer userId,Integer productId) throws FastrackStoreException;
 	
-	public void deleteCartProduct(Integer userId,Integer productId) throws FastrackStoreException;
+	//public void deleteCartProduct(Integer userId, Integer productId,Integer cartId)  throws FastrackStoreException;
+	public void deleteCartProduct(Integer userId, Integer productId)  throws FastrackStoreException;
+
+	
 }

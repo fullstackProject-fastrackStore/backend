@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 public class ProductDetails {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int Productid;
 	//@NotNull(message ="{Please enter name}")
 	private String productName;
@@ -22,6 +22,7 @@ public class ProductDetails {
 	private String description;
 	//@NotNull(message ="{Please enter price}")
 	private double price;
+	
 	public ProductDetails() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -68,6 +69,7 @@ public class ProductDetails {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
 	@Override
 	public String toString() {
 		return "ProductDetails [id=" + Productid + ", productName=" + productName + ", image=" + image + ", description="

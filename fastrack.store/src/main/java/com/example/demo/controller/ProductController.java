@@ -45,7 +45,7 @@ public class ProductController {
 	@PostMapping("/registerProduct")
 	public ResponseEntity<?> addProduct(@RequestBody ProductDetails product )  throws FastrackStoreException {
 		productservice.addProduct(product);
-		return new ResponseEntity<> ("Product is Registered",HttpStatus.OK);	
+		return new ResponseEntity<> (HttpStatus.OK);	
 	}
 	
 	@PutMapping("/updateProduct/{id}")
@@ -60,7 +60,7 @@ public class ProductController {
 	@DeleteMapping("/deleteProduct/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer id)  throws FastrackStoreException {
 		productservice.deleteProduct(id);
-		return new ResponseEntity<>("successfully unregistered for the services",HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAllProducts")

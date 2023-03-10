@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class CartUser {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int cartId;
 	private int productId;
 	private int userId;

@@ -37,9 +37,12 @@ public class CartServiceImpl implements CartService{
 		
 		for (CartUser entries : userProduct) {
 			
-			productList.add(productRepository.findById(entries.getProductId()).get());
+			Optional<ProductDetails> productInCart =productRepository.findById(entries.getProductId());
 			
-		}
+			if(productInCart.isPresent()) {
+			productList.add(productInCart.get());
+			
+		}}
 		
 		return productList;
 	}
@@ -50,13 +53,23 @@ public class CartServiceImpl implements CartService{
 		CartUser item = new CartUser( productId,userId);
 		cartRepository.save(item);
 	}
-
 	@Override
 	public void deleteCartProduct(Integer userId, Integer productId)  throws FastrackStoreException {
-		CartUser item= cartRepository.findByUserIdAndProductId(userId,productId);
-		cartRepository.delete(item);
+		List<CartUser> item= cartRepository.findByUserIdAndProductId(userId,productId);
+		if(item.isEmpty()) {
+			return;
+		}
+		cartRepository.delete(item.get(0));
 		
 	}
+
+//	@Override
+//	public void deleteCartProduct(Integer userId, Integer productId,Integer cartId) throws FastrackStoreException {
+//		// TODO Auto-generated method stub
+//		CartUser item= cartRepository.findByUserIdAndProductIdAndCartId(userId,productId,cartId);
+//		//List<CartUser> items = cartRepository.findByUserIdAndProductIdAndCartId(userId,productId);
+//		cartRepository.delete(item);
+//	}
 	
 	
 	
